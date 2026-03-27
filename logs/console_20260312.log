@@ -1,0 +1,109 @@
+=== 应用启动时间: 2026-03-12 09:33:22 ===
+
+[2026-03-12 09:33:26] [STDOUT] 111111
+[2026-03-12 09:33:26] [STDOUT] 手机号  的用户不存在！
+[2026-03-12 09:33:26] [STDOUT] 所有用户信息：
+[2026-03-12 09:33:26] [STDOUT] {'id': 2, 'name': 'aaa', 'phone': '13079881110', 'email': '322346@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 5}
+[2026-03-12 09:33:26] [STDOUT] {'id': 5, 'name': 'aaa', 'phone': '17879889000', 'email': '128746@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 5}
+[2026-03-12 09:33:26] [STDOUT] {'id': 6, 'name': 'aaa', 'phone': '18279881110', 'email': '987346@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 5}
+[2026-03-12 09:33:26] [STDOUT] {'id': 8, 'name': 'ccc', 'phone': '09876543212', 'email': '0900@qwe.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 9, 'name': 'dcdc', 'phone': '23456789012', 'email': '1231@aaa.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 10, 'name': 'eedeee', 'phone': '45678901234', 'email': 'jgdg@123.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 11, 'name': '张三', 'phone': '89012345678', 'email': 'zxzxc@qq.com', 'password': 'dfdfc6d13fea1dfa0cfd8acfb36b3047abda84d77e3c6cf68f79dbac14b95006', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 13, 'name': 'zhangsan', 'phone': '76543210987', 'email': 'sdcsv@qcv.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 15, 'name': '权限zero', 'phone': '00000000000', 'email': '9123426@116.com', 'password': '123456', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 16, 'name': '权限zero', 'phone': '10000000000', 'email': '9122326@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 19, 'name': '权限tow', 'phone': '22222222222', 'email': '1233326@116.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 2}
+[2026-03-12 09:33:26] [STDOUT] {'id': 20, 'name': '权限one', 'phone': '11111111111', 'email': '932326@116.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 1}
+[2026-03-12 09:33:26] [STDOUT] {'id': 21, 'name': 'jngjnq', 'phone': '13333333333', 'email': '213123@123.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 23, 'name': 'qwert', 'phone': '44449999000', 'email': '12ff@273.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 4}
+[2026-03-12 09:33:26] [STDOUT] {'id': 26, 'name': '权限five', 'phone': '55555555555', 'email': '55555@qqq.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 0}
+[2026-03-12 09:33:26] [STDOUT] {'id': 27, 'name': '权限five', 'phone': '55555555556', 'email': '935526@555.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 5}
+[2026-03-12 09:33:26] [STDOUT] 登录信息：
+[2026-03-12 09:33:26] [STDOUT] 0
+[2026-03-12 09:33:26] [STDOUT] user_phone: -1, user_password: -1, 
+input_phone: , input_hashlib_password: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, input_password:
+[2026-03-12 09:35:00] [STDOUT] 111111
+[2026-03-12 09:35:00] [STDOUT] 所有用户信息：
+[2026-03-12 09:35:00] [STDOUT] {'id': 2, 'name': 'aaa', 'phone': '13079881110', 'email': '322346@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 5}
+[2026-03-12 09:35:00] [STDOUT] {'id': 5, 'name': 'aaa', 'phone': '17879889000', 'email': '128746@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 5}
+[2026-03-12 09:35:00] [STDOUT] {'id': 6, 'name': 'aaa', 'phone': '18279881110', 'email': '987346@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 5}
+[2026-03-12 09:35:00] [STDOUT] {'id': 8, 'name': 'ccc', 'phone': '09876543212', 'email': '0900@qwe.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 9, 'name': 'dcdc', 'phone': '23456789012', 'email': '1231@aaa.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 10, 'name': 'eedeee', 'phone': '45678901234', 'email': 'jgdg@123.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 11, 'name': '张三', 'phone': '89012345678', 'email': 'zxzxc@qq.com', 'password': 'dfdfc6d13fea1dfa0cfd8acfb36b3047abda84d77e3c6cf68f79dbac14b95006', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 13, 'name': 'zhangsan', 'phone': '76543210987', 'email': 'sdcsv@qcv.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 15, 'name': '权限zero', 'phone': '00000000000', 'email': '9123426@116.com', 'password': '123456', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 16, 'name': '权限zero', 'phone': '10000000000', 'email': '9122326@116.com', 'password': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 19, 'name': '权限tow', 'phone': '22222222222', 'email': '1233326@116.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 2}
+[2026-03-12 09:35:00] [STDOUT] {'id': 20, 'name': '权限one', 'phone': '11111111111', 'email': '932326@116.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 1}
+[2026-03-12 09:35:00] [STDOUT] {'id': 21, 'name': 'jngjnq', 'phone': '13333333333', 'email': '213123@123.com', 'password': 'fa32e1c7a49edbba205163989bcafa5d2e5a91d0da96900e8e34ae60e88bd926', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 23, 'name': 'qwert', 'phone': '44449999000', 'email': '12ff@273.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 4}
+[2026-03-12 09:35:00] [STDOUT] {'id': 26, 'name': '权限five', 'phone': '55555555555', 'email': '55555@qqq.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] {'id': 27, 'name': '权限five', 'phone': '55555555556', 'email': '935526@555.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 5}
+[2026-03-12 09:35:00] [STDOUT] 登录信息：
+[2026-03-12 09:35:00] [STDOUT] {'id': 26, 'name': '权限five', 'phone': '55555555555', 'email': '55555@qqq.com', 'password': '08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4', 'permission_level': 0}
+[2026-03-12 09:35:00] [STDOUT] 查询成功
+[2026-03-12 09:35:00] [STDOUT] user_phone: 55555555555, user_password: 08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4, 
+input_phone: 55555555555, input_hashlib_password: 08e667ee9093dc489c80c2eb6fa9aebe75e5e5e5c9b92e777586357ca43625a4, input_password: 12345678m
+[2026-03-12 09:35:00] [STDOUT] 用户权限级别: 0
+[2026-03-12 09:35:00] [STDOUT] 登录成功！
+[2026-03-12 09:35:00] [STDOUT] 打开主窗口成功，权限级别: 0
+[2026-03-12 09:35:02] [STDOUT] 添加可用摄像头: 前门摄像头 (索引 0)
+[2026-03-12 09:35:03] [STDOUT] 音频报警管理器初始化完成
+[2026-03-12 09:35:03] [STDOUT] 成功创建摄像头: 前门摄像头 (索引 0)
+[2026-03-12 09:35:06] [STDOUT] 开始播放警报音频
+[2026-03-12 09:35:16] [STDOUT] 切换到视频处理模式，当前索引: 0
+[2026-03-12 09:35:16] [STDOUT] 切换后索引: 1
+[2026-03-12 09:35:18] [STDOUT] 切换到摄像头检测模式，当前索引: 1
+[2026-03-12 09:35:18] [STDOUT] 切换后索引: 0
+[2026-03-12 09:35:32] [STDOUT] 开始播放警报音频
+[2026-03-12 09:35:38] [STDOUT] 开始播放警报音频
+[2026-03-12 09:35:52] [STDOUT] 停止检测器时出错: wrapped C/C++ object of type AppLogger has been deleted
+=== 应用启动时间: 2026-03-12 09:36:05 ===
+
+[2026-03-12 09:36:07] [STDOUT] 手机号  的用户不存在！
+[2026-03-12 09:36:19] [STDOUT] 管理员登录成功！
+[2026-03-12 09:36:19] [STDOUT] 打开主窗口成功，权限级别: 5
+[2026-03-12 09:36:21] [STDOUT] 添加可用摄像头: 前门摄像头 (索引 0)
+[2026-03-12 09:36:21] [STDOUT] 添加可用摄像头: 客厅摄像头 (索引 1)
+[2026-03-12 09:36:21] [STDOUT] 添加不可用摄像头占位: 公园摄像头 (索引 2)
+[2026-03-12 09:36:21] [STDOUT] 添加不可用摄像头占位: 厨房摄像头 (索引 3)
+[2026-03-12 09:36:21] [STDOUT] 音频报警管理器初始化完成
+[2026-03-12 09:36:21] [STDOUT] 成功创建摄像头: 前门摄像头 (索引 0)
+[2026-03-12 09:36:21] [STDOUT] 成功创建摄像头: 客厅摄像头 (索引 1)
+[2026-03-12 09:36:22] [STDOUT] 创建摄像头 公园摄像头 (索引 2) 失败: 无法打开摄像头索引 2。
+[2026-03-12 09:36:22] [STDOUT] 摄像头 公园摄像头 (索引 2) 创建失败，已创建占位组件
+[2026-03-12 09:36:22] [STDOUT] 创建摄像头 厨房摄像头 (索引 3) 失败: 无法打开摄像头索引 3。
+[2026-03-12 09:36:22] [STDOUT] 摄像头 厨房摄像头 (索引 3) 创建失败，已创建占位组件
+[2026-03-12 09:36:22] [STDOUT] 
+警告: 2 个摄像头创建失败:
+[2026-03-12 09:36:22] [STDOUT]   - 公园摄像头 (索引 2): 创建失败
+[2026-03-12 09:36:22] [STDOUT]   - 厨房摄像头 (索引 3): 创建失败
+[2026-03-12 09:36:22] [STDOUT] 
+提示: 如果安装了OBS虚拟摄像头插件，可能需要:
+[2026-03-12 09:36:22] [STDOUT]   1. 检查设备管理器中的摄像头设备
+[2026-03-12 09:36:22] [STDOUT]   2. 尝试使用其他摄像头索引
+[2026-03-12 09:36:22] [STDOUT]   3. 临时禁用OBS虚拟摄像头插件
+[2026-03-12 09:36:26] [STDOUT] 开始播放警报音频
+[2026-03-12 09:36:38] [STDOUT] 切换到视频处理模式，当前索引: 0
+[2026-03-12 09:36:38] [STDOUT] 切换后索引: 1
+[2026-03-12 09:36:40] [STDOUT] 切换到用户管理模式
+[2026-03-12 09:36:46] [STDOUT] 切换到配置管理模式
+[2026-03-12 09:36:54] [STDOUT] 切换到摄像头检测模式，当前索引: 3
+[2026-03-12 09:36:54] [STDOUT] 切换后索引: 0
+[2026-03-12 09:37:00] [STDOUT] 切换到配置管理模式
+[2026-03-12 09:37:21] [STDOUT] 开始播放警报音频
+[2026-03-12 09:37:28] [STDOUT] 开始播放警报音频
+[2026-03-12 09:37:34] [STDOUT] 开始播放警报音频
+[2026-03-12 09:38:18] [STDOUT] 开始播放警报音频
+[2026-03-12 09:38:19] [STDOUT] 切换到用户管理模式
+[2026-03-12 09:38:26] [STDOUT] 开始播放警报音频
+[2026-03-12 09:38:37] [STDOUT] 停止检测器时出错: wrapped C/C++ object of type AppLogger has been deleted
+[2026-03-12 09:38:37] [STDOUT] 停止检测器时出错: wrapped C/C++ object of type AppLogger has been deleted
+=== 应用启动时间: 2026-03-12 09:38:46 ===
+
+[2026-03-12 09:38:50] [STDOUT] 注册界面打开成功
+[2026-03-12 09:38:56] [STDOUT] 手机号  的用户不存在！
+[2026-03-12 09:39:06] [STDOUT] 手机号 1231231123 的用户不存在！
+[2026-03-12 09:39:15] [STDOUT] 手机号 22233323212 的用户不存在！
