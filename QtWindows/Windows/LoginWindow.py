@@ -8,97 +8,59 @@ from QtWindows.Windows.MainWindo import MainWindow
 class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
-        #'./QtWindows/SQlite/users.db'
-        #self.database = SQLiteManager('../SQlite/users.db')
         self.database = SQLiteManager('./QtWindows/SQlite/users.db')
 
-        self.setWindowTitle("登录界面")  # 设置窗口标题
-        self.setGeometry(400, 400, 600, 800)  # 设置窗口位置和大小
+        self.setWindowTitle("登录界面")
+        self.setGeometry(400, 400, 600, 800)
+        self.setStyleSheet("background-color: #F5F7FA;")
         self.is_login = False
 
-        # 创建垂直布局
         layout = QVBoxLayout()
+        layout.setSpacing(20)
+        layout.setContentsMargins(50, 50, 50, 50)
 
-        # 创建标题标签
         title_label = QLabel('登录')
         title_label.setAlignment(Qt.AlignCenter)
-        title_label.setStyleSheet('font-size: 24px; font-weight: bold;')
+        title_label.setStyleSheet("font-size: 28px; font-weight: bold; color: #303133;")
         layout.addWidget(title_label)
 
         layout.addStretch(1)
         self.setLayout(layout)
 
-        # 创建账号输入框
         self.userphone_input = QLineEdit(self)
         self.userphone_input.setPlaceholderText("请输入uid")
-        self.userphone_input.setStyleSheet('padding: 10px; font-size: 14px;')
         layout.addWidget(self.userphone_input)
 
-        # 创建密码输入框
         self.password_input = QLineEdit(self)
         self.password_input.setPlaceholderText("请输入密码")
         self.password_input.setEchoMode(QLineEdit.Password)
-        self.password_input.setStyleSheet('padding: 10px; font-size: 14px;')
         layout.addWidget(self.password_input)
 
-        # 创建登录按钮
-        login_button = QPushButton("登录")
-        login_button.setStyleSheet("""
-            QPushButton {
-                padding: 10px;
-                font-size: 16px;
-                background-color: #4CAF50;
-                color: white;
-                border-radius: 5px;
-            }
-            QPushButton:hover {
-                background-color: #45a049;  /* 鼠标悬停时背景颜色 */
-            }
-            QPushButton:pressed {
-                background-color: #388e3c;  /* 按钮按下时背景颜色 */
-                transform: translateY(2px);  /* 按钮按下时微小位移 */
-            }
-        """)
+        login_button = QPushButton("登 录")
         layout.addWidget(login_button)
-        register_button = QPushButton("注册")
+
+        register_button = QPushButton("还没有账号？立即注册")
         register_button.setStyleSheet("""
             QPushButton {
-                padding: 5px;
-                font-size: 12px;
-                color: #007BFF;
-                background: none;
+                background-color: transparent;
+                color: #409EFF;
                 border: none;
                 text-decoration: underline;
             }
             QPushButton:hover {
-                color: #0056b3;
+                color: #66B1FF;
             }
         """)
         layout.addWidget(register_button)
 
-        # 绑定注册按钮点击事件
         register_button.clicked.connect(self.on_register_clicked)
 
-        # 调整布局
-        layout.addStretch(1)  # 在界面底部加入空白区域
-        # 创建退出按钮，并放置到右下角
-        quit_button = QPushButton("退出")
-        quit_button.setStyleSheet("""
-            QPushButton {
-                padding: 10px;
-                font-size: 14px;
-                background-color: #f44336;
-                color: white;
-                border-radius: 5px;
-            }
-            QPushButton:hover {
-                background-color: #e53935;
-            }
-            QPushButton:pressed {
-                background-color: #d32f2f;
-            }
-        """)
-        quit_button.clicked.connect(self.close)  # 按下退出按钮关闭窗口
+        layout.addStretch(1)
+
+        quit_button = QPushButton("退 出")
+        quit_button.setObjectName("dangerButton")
+        layout.addWidget(quit_button)
+        quit_button.clicked.connect(self.close)
 
         # 创建水平布局来放置退出按钮
         bottom_layout = QHBoxLayout()
