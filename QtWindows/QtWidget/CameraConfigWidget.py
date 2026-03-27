@@ -9,13 +9,16 @@ from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
                              QSpinBox, QLineEdit, QPushButton, QComboBox,
                              QListWidget, QListWidgetItem, QMessageBox,
                              QGroupBox, QScrollArea, QFormLayout)
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from config.camera_config import CAMERA_CONFIG
 from logger import app_logger
 
 
 class CameraConfigWidget(QWidget):
     """摄像头配置管理组件"""
+    
+    # 定义配置更新信号，携带最新的配置字典
+    config_updated_signal = pyqtSignal(dict)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -227,6 +230,38 @@ class CameraConfigWidget(QWidget):
     def _save_config(self):
         """保存配置到文件"""
         try:
+            # ====== 关键修复：同步 permission_config ======
+            # 1. 提取当前所有真实存在的摄像头索引
+            valid_indices = list(self.current_config["camera_names"].keys())
+            
+            # 2. 清洗旧的权限列表：删除不在 camera_names 中的废弃索引
+            for level in self.current_config["permission_config"]:
+                old_list = self.current_config["permission_config"][level]
+                # 过滤掉不在 valid_indices 中的索引
+                self.current_config["permission_config"][level] = [idx for idx in old_list if idx in valid_indices]
+            
+            # 3. 把新加的索引授权给所有权限级别
+            # 找出所有权限级别中已经有的索引
+            all_assigned = set()
+            for level in self.current_config["permission_config"]:
+                all_assigned.update(self.current_config["permission_config"][level])
+            
+            # 找出新增的索引（存在于 camera_names 但不在任何权限列表中）
+            new_indices = set(valid_indices) - all_assigned
+            
+            # 将新索引添加到所有权限级别
+            if new_indices:
+                for level in self.current_config["permission_config"]:
+                    for new_idx in new_indices:
+                        if new_idx not in self.current_config["permission_config"][level]:
+                            self.current_config["permission_config"][level].append(new_idx)
+                    # 排序
+                    self.current_config["permission_config"][level].sort()
+            
+            print(f"[配置同步] valid_indices={valid_indices}")
+            print(f"[配置同步] permission_config={self.current_config['permission_config']}")
+            # ====== 同步结束 ======
+
             # 生成配置文件内容
             config_content = f'''"""
 摄像头配置文件
@@ -252,8 +287,15 @@ CAMERA_CONFIG = {{
             with open(self.config_file, 'w', encoding='utf-8') as f:
                 f.write(config_content)
 
-            QMessageBox.information(self, "成功", "配置保存成功！\n需要重启应用使配置生效。")
+            QMessageBox.information(self, "成功", "配置保存成功！\n检测界面将实时更新。")
             app_logger.info("摄像头配置保存成功")
+            
+            # 构建最新的配置字典并发射信号
+            latest_config = {
+                "camera_names": dict(self.current_config["camera_names"]),
+                "permission_config": dict(self.current_config["permission_config"])
+            }
+            self.config_updated_signal.emit(latest_config)
 
         except Exception as e:
             QMessageBox.critical(self, "错误", f"保存配置失败: {str(e)}")

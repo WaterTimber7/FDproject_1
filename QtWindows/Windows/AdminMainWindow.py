@@ -69,6 +69,10 @@ class AdminMainWindow(MainWindow):
         # 3. 添加配置管理组件到 stacked_widget
         self.config_widget = CameraConfigWidget()
         self.stacked_widget.addWidget(self.config_widget)
+        
+        # 4. 连接配置更新信号到刷新槽函数（使用 Qt.QueuedConnection 确保在主线程执行）
+        self.config_widget.config_updated_signal.connect(self._on_config_updated)
+        print("配置更新信号已连接到刷新槽函数")
 
     def _show_user_management(self):
         """显示用户管理界面"""
@@ -83,6 +87,26 @@ class AdminMainWindow(MainWindow):
         self.stacked_widget.setCurrentWidget(self.config_widget)
         self._update_button_styles(3)
         app_logger.info("切换到配置管理模式")
+
+    def _on_config_updated(self, new_config: dict):
+        """
+        配置更新后的回调函数
+        当CameraConfigWidget保存配置成功后自动调用
+        刷新摄像头检测界面
+        """
+        # 防御性检查
+        if not hasattr(self, 'camera_manager') or not hasattr(self, 'stacked_widget'):
+            print("UI 尚未完全初始化，跳过刷新")
+            return
+        
+        print("检测到配置更新信号，开始刷新摄像头视图...")
+        app_logger.info("检测到配置更新信号，刷新摄像头视图")
+        
+        # 刷新摄像头视图，传递新配置
+        self.refresh_camera_views(new_config)
+        
+        # 切换回摄像头检测视图
+        self._show_camera_view()
 
     def _update_button_styles(self, active_index: int):
         super()._update_button_styles(active_index)

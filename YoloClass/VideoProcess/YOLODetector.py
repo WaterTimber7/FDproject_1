@@ -63,11 +63,21 @@ class YOLODetector:
         app_logger.info("YOLO 检测线程已启动")
 
     def stop(self):
-        """停止检测线程"""
+        """停止检测线程，等待线程完全退出"""
         self.running = False
-        if self.thread:
-            self.thread.join(timeout=2)
+        
+        # 等待检测线程完全退出
+        if self.thread is not None:
+            self.thread.join(timeout=3)
+            self.thread = None
+        
+        # 确保摄像头线程也完全停止
         self.camera.stop()
+        
+        # 清除最新结果，防止内存访问冲突
+        with self.result_lock:
+            self.latest_result = []
+        
         app_logger.info("YOLO 检测线程已停止")
 
     def _loop(self):

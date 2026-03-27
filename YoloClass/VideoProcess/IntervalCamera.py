@@ -118,9 +118,18 @@ class IntervalCamera:
             return self._latest_frame.copy()
 
     def stop(self):
+        """安全停止摄像头，等待采集线程完全退出"""
         self.running = False
+        
+        # 等待采集线程完全退出
+        if self._thread is not None:
+            self._thread.join(timeout=2)
+            self._thread = None
+        
+        # 释放摄像头资源
         if self.cap:
             self.cap.release()
+            self.cap = None
 
     def is_running(self):
         return self.running

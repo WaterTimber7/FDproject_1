@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 from PyQt5.QtCore import Qt
 from YoloClass.VideoProcess import YOLODetector
 from QtWindows.QtWidget.CameraViewWidget import CameraViewWidget
+from config.camera_config import CAMERA_CONFIG
 
 
 class CameraPlaceholderWidget(QWidget):
@@ -185,12 +186,86 @@ class CameraDetectorManager:
         return all_views
 
     def stop_all(self):
-        """停止所有检测器，释放摄像头资源"""
+        """停止所有检测器，释放摄像头资源，并清空所有列表"""
+        print("正在停止所有检测器...")
+        
+        # 先停止所有检测器
         for detector in self.detectors:
             try:
                 detector.stop()
             except Exception as e:
                 print(f"停止检测器时出错: {e}")
+        
+        # 彻底清空所有列表，防止旧引用导致崩溃
+        self.detectors.clear()
+        self.camera_views.clear()
+        self.placeholder_views.clear()
+        print("所有检测器已停止，列表已清空")
+
+    def refresh_cameras(self, permission_level: int = 0, new_config: dict = None):
+        """
+        刷新摄像头配置，重新加载所有摄像头
+        
+        :param permission_level: 权限级别，用于筛选允许查看的摄像头
+        :param new_config: 新的配置字典（可选），如果提供则直接使用，否则降级使用内存中的配置
+        """
+        print("开始刷新摄像头配置...")
+        
+        try:
+            # 1. 安全停止所有检测器并清空列表
+            self.stop_all()
+            
+            # 2. 直接使用传入的新配置，或者降级使用内存中的旧配置
+            if new_config:
+                allowed_cameras = new_config.get("permission_config", {}).get(permission_level, [])
+                names_dict = new_config.get("camera_names", {})
+                print(f"使用传入的新配置，权限级别 {permission_level} 允许查看的摄像头: {allowed_cameras}")
+            else:
+                # 降级：重新加载配置文件
+                import importlib
+                import config.camera_config as camera_config
+                importlib.reload(camera_config)
+                allowed_cameras = camera_config.CAMERA_CONFIG["permission_config"].get(permission_level, [])
+                names_dict = camera_config.CAMERA_CONFIG["camera_names"]
+                print(f"降级使用文件配置，权限级别 {permission_level} 允许查看的摄像头: {allowed_cameras}")
+
+            if len(allowed_cameras) == 0:
+                print("当前权限级别没有可查看的摄像头")
+                return
+
+            # 3. 重新创建摄像头配置
+            camera_configs = []
+            for source in allowed_cameras:
+                camera_name = names_dict.get(source, f"cam{source}")
+                camera_configs.append({"source": source, "name": camera_name})
+
+            # 4. 重新设置摄像头
+            if camera_configs:
+                self.setup_cameras(camera_configs)
+                print(f"摄像头刷新完成，共加载 {len(camera_configs)} 个摄像头配置")
+            else:
+                print("没有摄像头配置需要加载")
+                
+        except Exception as e:
+            print(f"刷新摄像头配置时出错: {e}")
+            import traceback
+            traceback.print_exc()
+
+    def get_camera_configs(self, permission_level: int = 0) -> List[Dict[str, Any]]:
+        """
+        获取当前权限级别下的摄像头配置列表
+        
+        :param permission_level: 权限级别
+        :return: 摄像头配置列表
+        """
+        allowed_cameras = CAMERA_CONFIG["permission_config"].get(permission_level, [])
+        camera_configs = []
+        
+        for source in allowed_cameras:
+            camera_name = CAMERA_CONFIG["camera_names"].get(source, f"cam{source}")
+            camera_configs.append({"source": source, "name": camera_name})
+            
+        return camera_configs
 
     @staticmethod
     def find_available_cameras(max_index: int = 10) -> List[int]:

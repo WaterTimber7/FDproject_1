@@ -80,6 +80,82 @@ class MainWindow(QMainWindow):
         if camera_configs:
             self.camera_manager.setup_cameras(camera_configs)
 
+    def refresh_camera_views(self, new_config: dict = None):
+        """
+        刷新摄像头视图
+        重新加载配置文件并更新显示界面
+        
+        :param new_config: 新的配置字典（可选），如果提供则直接使用，否则从文件重新加载
+        """
+        # 防御性检查：确保 UI 完全初始化
+        if not hasattr(self, 'stacked_widget') or not hasattr(self, 'camera_manager'):
+            print("UI 尚未完全初始化，跳过刷新")
+            return
+        
+        if not hasattr(self, 'camera_container'):
+            print("camera_container 尚未创建，跳过刷新")
+            return
+        
+        print("开始刷新摄像头视图...")
+        app_logger.info("开始刷新摄像头视图")
+        
+        try:
+            # 1. 刷新摄像头管理器中的配置（包含安全的线程停止）
+            self.camera_manager.refresh_cameras(self.permission_level, new_config)
+            
+            # 2. 获取新的视图组件列表
+            all_views = self.camera_manager.get_all_views()
+            
+            # 3. 安全移除旧的摄像头容器
+            if hasattr(self, 'camera_container') and self.camera_container is not None:
+                # 先从堆叠窗口中移除
+                self.stacked_widget.removeWidget(self.camera_container)
+                # 使用 deleteLater 安全释放 C++ 内存
+                self.camera_container.deleteLater()
+            
+            # 4. 创建新的摄像头容器
+            self.camera_container = QWidget()
+            
+            if len(all_views) == 0:
+                # 如果没有视图组件，显示提示信息
+                camera_container_layout = QVBoxLayout(self.camera_container)
+                no_camera_label = QLabel("当前权限级别没有可查看的摄像头")
+                no_camera_label.setAlignment(Qt.AlignCenter)
+                no_camera_label.setStyleSheet("color: red; font-size: 16px;")
+                camera_container_layout.addWidget(no_camera_label)
+            else:
+                # 使用网格布局显示所有视图组件
+                grid_layout = QGridLayout(self.camera_container)
+                grid_layout.setContentsMargins(5, 5, 5, 5)
+                grid_layout.setSpacing(5)
+
+                # 计算网格的行数和列数（最多3列）
+                num_views = len(all_views)
+                max_cols = min(3, num_views)  # 最多3列
+                rows = math.ceil(num_views / max_cols)
+
+                # 将视图组件添加到网格中
+                for i, view in enumerate(all_views):
+                    row = i // max_cols
+                    col = i % max_cols
+                    grid_layout.addWidget(view, row, col)
+
+            # 5. 将新的容器添加到堆叠窗口中
+            self.stacked_widget.insertWidget(0, self.camera_container)
+            
+            # 6. 保持当前显示模式为摄像头检测
+            if self.stacked_widget.currentIndex() == 0:
+                self.stacked_widget.setCurrentIndex(0)
+            
+            print(f"摄像头视图刷新完成，共显示 {len(all_views)} 个摄像头")
+            app_logger.info(f"摄像头视图刷新完成，共显示 {len(all_views)} 个摄像头")
+            
+        except Exception as e:
+            print(f"刷新摄像头视图时出错: {e}")
+            import traceback
+            traceback.print_exc()
+            app_logger.error(f"刷新摄像头视图时出错: {e}")
+
     def _setup_ui(self):
         """
         设置用户界面布局
