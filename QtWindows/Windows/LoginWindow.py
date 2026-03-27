@@ -37,6 +37,25 @@ class LoginWindow(QWidget):
         layout.addWidget(self.password_input)
 
         login_button = QPushButton("登 录")
+        login_button.setStyleSheet("""
+            QPushButton {
+                background-color: #409EFF;
+                color: #FFFFFF;
+                border: none;
+                border-radius: 4px;
+                padding: 10px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #66B1FF;
+            }
+            QPushButton:pressed {
+                background-color: #3A8EE6;
+                padding-top: 12px;
+                padding-bottom: 8px;
+            }
+        """)
         layout.addWidget(login_button)
 
         register_button = QPushButton("还没有账号？立即注册")
@@ -58,7 +77,22 @@ class LoginWindow(QWidget):
         layout.addStretch(1)
 
         quit_button = QPushButton("退 出")
-        quit_button.setObjectName("dangerButton")
+        quit_button.setStyleSheet("""
+            QPushButton {
+                background-color: #F56C6C;
+                color: #FFFFFF;
+                border: none;
+                border-radius: 4px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            QPushButton:hover {
+                background-color: #F89898;
+            }
+            QPushButton:pressed {
+                background-color: #E6A23C;
+            }
+        """)
         layout.addWidget(quit_button)
         quit_button.clicked.connect(self.close)
 
