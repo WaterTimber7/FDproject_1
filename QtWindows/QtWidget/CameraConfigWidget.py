@@ -121,17 +121,7 @@ class CameraConfigWidget(QWidget):
         self.save_btn = QPushButton("保存配置")
         self.save_btn.setStyleSheet("QPushButton { background-color: #4CAF50; color: white; font-weight: bold; }")
         self.save_btn.clicked.connect(self._save_config)
-
-        self.reset_btn = QPushButton("重置")
-        self.reset_btn.setStyleSheet("QPushButton { background-color: #f44336; color: white; }")
-        self.reset_btn.clicked.connect(self._reset_config)
-
-        self.reload_btn = QPushButton("重新加载")
-        self.reload_btn.clicked.connect(self._reload_config)
-
         button_layout.addWidget(self.save_btn)
-        button_layout.addWidget(self.reset_btn)
-        button_layout.addWidget(self.reload_btn)
         button_layout.addStretch()
 
         scroll_layout.addLayout(button_layout)
@@ -315,30 +305,4 @@ CAMERA_CONFIG = {{
             lines.append(f'        {level}: {indices},  # 权限{level}')
         return '\n'.join(lines)
 
-    def _reset_config(self):
-        """重置为默认配置"""
-        reply = QMessageBox.question(self, "确认重置",
-                                     "确定要重置为默认配置吗？\n所有修改将丢失。",
-                                     QMessageBox.Yes | QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            from config.camera_config import CAMERA_CONFIG
-            self.current_config = CAMERA_CONFIG.copy()
-            self._load_current_config()
-            app_logger.info("摄像头配置已重置")
-
-    def _reload_config(self):
-        """重新加载配置文件"""
-        try:
-            # 重新导入模块
-            import importlib
-            import config.camera_config as camera_config
-            importlib.reload(camera_config)
-
-            self.current_config = camera_config.CAMERA_CONFIG.copy()
-            self._load_current_config()
-            QMessageBox.information(self, "成功", "配置重新加载成功！")
-            app_logger.info("摄像头配置重新加载成功")
-
-        except Exception as e:
-            QMessageBox.critical(self, "错误", f"重新加载配置失败: {str(e)}")
-            app_logger.error(f"重新加载摄像头配置失败: {e}")
+    # _reset_config 和 _reload_config 方法已删除（不再需要）

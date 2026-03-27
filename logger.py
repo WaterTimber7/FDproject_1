@@ -45,6 +45,10 @@ class FileLogger:
     
     def write_app_log(self, level: str, message: str):
         """写入应用日志"""
+        # [新增] 白名单过滤：只保留包含目标检测关键字的日志
+        if "确认检测到目标" not in message:
+            return
+        
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"[{timestamp}] [{level}] {message}\n"
         
@@ -89,9 +93,20 @@ class AppLogger(QObject):
         def write(self, message):
             """写入消息"""
             if message.strip():  # 忽略空消息
-                # 写入到原始控制台
+                # 1. 正常输出到控制台终端
                 self.original_stream.write(message)
-                # 写入到日志文件
+                
+                # [新增] 2. 黑名单过滤：不需要记录到 console.log 文件的冗余/隐私信息
+                blacklist = [
+                    "{'id':",
+                    "'permission_level':",
+                    "登录信息：",
+                    "查询成功的用户信息"
+                ]
+                if any(keyword in message for keyword in blacklist):
+                    return  # 命中黑名单，直接跳过文件写入
+                
+                # 3. 写入到控制台日志文件
                 self.logger.file_logger.write_console_log(f"[{self.stream_type}] {message.rstrip()}")
         
         def flush(self):
